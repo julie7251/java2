@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nodeCreate</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>할 일 목록</h1>
+      <p>할 일을 기록해주세요.</p>
+      <p>공부가 끝난 것은 클릭해서 삭제해주세요.</p>
+      <form>
+        <input type="text" id="subject" autofocus />
+        <button onclick="newRegister(); return false">추가</button>
+      </form>
+      <hr />
+      <ul id="itemList">
+        <!-- js출력 -->
+      </ul>
+    </div>
+
+    <script>
+      function newRegister() {
+        let newItem = document.createElement("li"); //요소 노드 만들기
+        console.log(newItem);
+        let subject = document.getElementById("subject"); //폼에 텍스트 필드 입력
+        //변수에는 따옴표없이
+        let newText = document.createTextNode(subject.value); //텍스트 필드에 값을 텍스트 노드에 만들기
+        newItem.appendChild(newText); //텍스트 노드를 자식노드로 추가
+        let itemList = document.querySelector("#itemList");//웹문서에서 부모노드 가져오기
+        itemList.insertBefore(newItem, itemList.childNodes[0]);
+        // itemList.appendChild(newText)
+        // itemList.appendChild(newText);
+        console.log(newText);
+           //글자를 입력을 추가하면 텍스트필드에 초기화 시키는 부분(input창 값이 사라짐)
+        // subject.value = ""
+     
+let items = document.querySelectorAll("li")//모든 항목을 가져오기
+for(let i = 0; i < items.length; i++){
+    items [i].addEventListener("click", function(){
+if(this.parentNode){
+    this.parentNode.removeChild(this)
+}
+
+    })
+}
+
+      }
+    </script>
+  </body>
+</html>
